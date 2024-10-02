@@ -1,16 +1,17 @@
 "use client";
+import { ChatToggle } from "./chat-toggle";
+import { InfoCard } from "./info-card";
+import { AboutCard } from "./about-card";
+import { Stream, User } from "@prisma/client";
 import { useViwerToken } from "@/hooks/user-view-token";
 import { LiveKitRoom } from "@livekit/components-react";
-import { Stream, User } from "@prisma/client";
 import { useChatSidebar } from "@/store/use-chat-sidebar ";
 import { cn } from "@/lib/utils";
 import { Chat, ChatSkeleton } from "./chat";
 import { Video, VideoSkeleton } from "./video";
-import { ChatToggle } from "./chat-toggle";
 import { Header, HeaderSkeleton } from "./header";
-import { InfoCard } from "./info-card";
 interface StreamPlayerPorps {
-  user: User & { stream: Stream | null };
+  user: User & { stream: Stream | null; _count: { followedBy: number } };
   stream: Stream;
   isFollowing: boolean;
 }
@@ -51,6 +52,13 @@ const StreamPlayer = ({ user, stream, isFollowing }: StreamPlayerPorps) => {
             viewerIdentity={identity}
             name={stream.name}
             thumbnailUrl={stream.thumbnailUrl}
+          />
+          <AboutCard
+            hostName={user.username}
+            hostIdentity={user.id}
+            viewerIdentity={identity}
+            bio={user.bio}
+            followedByCount={user._count.followedBy}
           />
         </div>
         <div className={cn("col-span-1", collapsed && "hidden")}>
