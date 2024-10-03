@@ -36,6 +36,10 @@ export const getFollowedUser = async () => {
 export const isFollowingUser = async (id: string) => {
   try {
     const self = await getSelf();
+    if (!self || !self.username) {
+      return false;
+    }
+
     const otherUser = await db.user.findFirst({
       where: { id },
     });
@@ -46,6 +50,7 @@ export const isFollowingUser = async (id: string) => {
     if (otherUser.id === self.id) {
       return true;
     }
+
     const existingFollow = await db.follow.findFirst({
       where: {
         followerId: self.id,
