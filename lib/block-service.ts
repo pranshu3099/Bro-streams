@@ -3,6 +3,10 @@ import { getSelf } from "./authservice";
 export const isBlockedByUser = async (id: string) => {
   try {
     const self = await getSelf();
+    if (!self || !self.username) {
+      return false;
+    }
+
     const otherUser = await db.user.findUnique({
       where: {
         id,
