@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@clerk/nextjs": "^5.3.3",
+    "@clerk/nextjs": "^5.7.1",
     "@clerk/themes": "^2.1.21",
     "@livekit/components-react": "^2.5.3",
     "@prisma/client": "^5.19.0",
@@ -23,6 +23,7 @@
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-switch": "^1.1.0",
     "@radix-ui/react-tooltip": "^1.1.2",
+    "@tanstack/react-table": "^8.20.5",
     "@uploadthing/react": "^7.0.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
@@ -32,7 +33,7 @@
     "livekit-client": "^2.5.1",
     "livekit-server-sdk": "^2.6.2",
     "lucide-react": "^0.435.0",
-    "next": "14.2.6",
+    "next": "^14.2.14",
     "next-themes": "^0.3.0",
     "query-string": "^9.1.0",
     "react": "^18",
