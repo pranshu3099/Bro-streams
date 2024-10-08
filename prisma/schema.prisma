@@ -16,7 +16,7 @@ datasource db {
 }
 
 model User {
-  id             String   @unique @default(uuid())
+  id             String   @id @unique @default(uuid())
   username       String   @unique
   imageurl       String   @db.Text
   externalUserId String   @unique
