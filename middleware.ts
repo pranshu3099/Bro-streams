@@ -11,6 +11,14 @@ const isPublicRoute = createRouteMatcher([
 ]);
 
 export default clerkMiddleware((auth, request) => {
+  const userId = auth().userId;
+  const url = new URL(request.url);
+  if (
+    userId &&
+    (url.pathname.startsWith("/sign-in") || url.pathname.startsWith("/sign-up"))
+  ) {
+    return Response.redirect(new URL("/", request.url));
+  }
   if (!isPublicRoute(request)) {
     auth().protect();
   }
